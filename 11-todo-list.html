@@ -7,28 +7,20 @@
 </head>
 <body>
 
-  <!-- Todo List 1 -->
-  <p> Todo List</p>
+    <!-- Todo List 1 -->
+    <p> Todo List</p>
     
-  <input type="text" placeholder="Todo name" class="js-name-input">
-  
-  <input type="date" class="js-due-date-input">
+    <input type="text" placeholder="Todo name" class="js-name-input">
+    
+    <input type="date" class="js-due-date-input">
 
-  <button onclick="addTodo()">Add</button>
-  <!-- End of todoList 1 -->
+    <button onclick="addTodo()">Add</button>
+    <!-- End of todoList 1 -->
 
-  <!-- Create an element to put the html elements -->
-  <div class="js-todo-list"></div
+    <!-- Create an element to put the html elements -->
+    <div class="js-todo-list"></div>
 
     <script>
-
-        // Algorithm
-        // Create an array to store the todo list
-        // When we click "Add", Get text from textbox.
-        // Add it to array
-        // Console.log array
-
-        // Todo List 1
 
         const todoList = [{
             name:'make dinner',
@@ -36,76 +28,51 @@
         },{
             name: 'wash dishes',
             dueDate:'2023-07-17'
-        }
-    ];
-        
+        }];
+
         renderTodoList();
 
         function renderTodoList(){
+            let todoListHTML = '';
 
-        let todoListHTML = '';
-        // Lets loop through the list
-        for (let i = 0; i<todoList.length; i++){
-            const todoObject = todoList[i];
-            const name = todoObject.name;
-            // const dueDate = todoObject.dueDate;
-            const {name, dueDate } = todoObject;
+            for (let i = 0; i<todoList.length; i++){
+                const todoObject = todoList[i];
+                const name = todoObject.name;
+                const dueDate = todoObject.dueDate;
 
-            const html = `
-            <p> ${name} ${dueDate}
-                <button onclick="
-                todoList.splice(${i}, 1);
-                renderTodoList();
-                "> Delete </button> 
-            </p>
-            `;
-            
-            // TO combine the html element we shall use the accumulator pattern
-            todoListHTML +=html;        
-        }
+                const html = `
+                <p> ${name} ${dueDate}
+                    <button onclick="removeTodo(${i})"> Delete </button> 
+                </p>
+                `;
 
-        // After the loop lets console.log html
-        // put the div in our javascript
-        document.querySelector('.js-todo-list')
-        .innerHTML = todoListHTML;
+                todoListHTML += html;
+            }
 
+            document.querySelector('.js-todo-list').innerHTML = todoListHTML;
         }
 
         function addTodo(){
-           const inputElement = document.querySelector('.js-name-input');
-        //    To get the text out we use the value element
+            const inputElement = document.querySelector('.js-name-input');
             const name = inputElement.value;
 
             const dateInputElement = document.querySelector('.js-due-date-input');
-
             const dueDate = dateInputElement.value;
-        // Add the name to the array
-            todoList.push(
-                {
-                    // name:name,
-                    // dueDate: dueDate,
-                    name,
-                    dueDate
-                });
-                    
-        // value property represents the text in the text box and we should reset it afteradding
-        inputElement.value = '';
 
-        renderTodoList();
+            todoList.push({ name, dueDate });
+
+            inputElement.value = '';
+            dateInputElement.value = '';
+
+            renderTodoList();
         }
 
-        // End of todoList 1
+        function removeTodo(index){
+            todoList.splice(index, 1);
+            renderTodoList();
+        }
 
-        // Algorithm
-        // 1. Loop through the array 
-        // Create some HTML Code for each todo
-        // Put the HTML on webpage
-
-
-        
-        
     </script>
-
     
 </body>
 </html>
