@@ -13,7 +13,8 @@
 
     <input type="text" placeholder="Todo name" class="js-name-input">
     
-    <input type="date">
+    <input type="date"
+    class="js-due-date-input">
 
     <button onclick="
     addTodo();
@@ -54,7 +55,6 @@
             const todoObject = todoList[i];
             const name = todoObject.name;
             // const dueDate = todoObject.dueDate;
-            // 
             const {name, dueDate } = todoObject;
 
             const html = `
@@ -82,10 +82,20 @@
         function addTodo(){
            const inputElement = document.querySelector('.js-name-input');
         //    To get the text out we use the value element
-       const name = inputElement.value;
+            const name = inputElement.value;
+
+            const dateInputElement = document.querySelector('.js-due-date-input');
+
+            const dueDate = dateInputElement.value;
         // Add the name to the array
-        todoList.push(name);
-        console.log(todoList);
+            todoList.push(
+                {
+                    // name:name,
+                    // dueDate: dueDate,
+                    name,
+                    dueDate
+                });
+            console.log(todoList);
         
         // value property represents the text in the text box and we should reset it afteradding
         inputElement.value = '';
