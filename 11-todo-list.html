@@ -4,48 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo lists</title>
-
-    <style>
-        body{
-            font-family: Arial;
-        }
-
-        .todo-grid,
-        .todo-input-grid {
-            display: grid;
-            grid-template-columns: 200px 150px 100px;
-            column-gap: 10px;
-            row-gap: 10px;
-            align-items: center;
-        }
-        .todo-input-grid{
-            margin-bottom: 10px;
-            align-items: stretch;
-        }
-        .name-input,
-        .due-date-input{
-            font-size: 15px;
-            padding: 6px;
-        }
-        .add-todo-button {
-            background-color: green;
-            color: white;
-            border: none;
-            font-size: 15px;
-            cursor: pointer;
-        }
-        .delete-todo-button{
-            background-color: darkred;
-            color: white;
-            border: none;
-            font-size: 15px;
-            cursor: pointer;
-            padding-top: 10px;
-            padding-bottom: 10px;
-        }
-        
-
-    </style>
+<!-- css -->
+<link rel="stylesheet" href="todo-list.css">
+<!-- End of css -->
 </head>
 <body>
 
@@ -59,64 +20,12 @@
         <button class="add-todo-button" onclick="addTodo()">Add</button>
         <!-- End of todoList 1 -->
 
-    </div>
-    
- 
+    </div> 
 
     <!-- Create an element to put the html elements -->
     <div class="js-todo-list todo-grid"></div>
 
-    <script>
-
-        const todoList = [{
-            name:'make dinner',
-            dueDate:'2023-07-17'
-        },{
-            name: 'wash dishes',
-            dueDate:'2023-07-17'
-        }];
-
-        renderTodoList();
-
-        function renderTodoList(){
-            let todoListHTML = '';
-
-            for (let i = 0; i<todoList.length; i++){
-                const todoObject = todoList[i];
-                const name = todoObject.name;
-                const dueDate = todoObject.dueDate;
-
-                const html = `
-                <div> ${name}</div>
-                <div> ${dueDate}</div>
-                <button class="delete-todo-button" onclick="removeTodo(${i})"> Delete </button>    
-                `;
-
-                todoListHTML += html;
-            }
-
-            document.querySelector('.js-todo-list').innerHTML = todoListHTML;
-        }
-
-        function addTodo(){
-            const inputElement = document.querySelector('.js-name-input');
-            const name = inputElement.value;
-
-            const dateInputElement = document.querySelector('.js-due-date-input');
-            const dueDate = dateInputElement.value;
-
-            todoList.push({ name, dueDate });
-
-            inputElement.value = '';
-            dateInputElement.value = '';
-
-            renderTodoList();
-        }
-
-        function removeTodo(index){
-            todoList.splice(index, 1);
-            renderTodoList();
-        }
+    <script src="todo-list.js">    
 
     </script>
     
